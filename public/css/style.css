@@ -1,0 +1,256 @@
+/* ========================== GLOBAL ========================== */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* ========================== NAVBAR ========================== */
+.navbar {
+    background: #2c2c6c;
+    color: white;
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar a {
+    color: white;
+    margin-left: 20px;
+    text-decoration: none;
+}
+
+/* ========================== HERO ========================== */
+.hero {
+    background-size: cover;
+    background-position: center;
+    height: 400px;
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.hero-content {
+    text-align: center;
+    background: rgba(0, 0, 0, 0.4);
+    padding: 30px;
+    border-radius: 10px;
+}
+
+.hero-content h2 {
+    margin-bottom: 15px;
+}
+
+/* Search di Hero */
+.hero-search {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.hero-search input {
+    width: 300px;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+}
+
+.hero-search button {
+    padding: 12px 20px;
+    background: #ffd700;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* ========================== SECTION & GRID ========================== */
+.section {
+    padding: 40px;
+}
+
+.section-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.section-header h3 {
+    font-size: 28px;
+    font-weight: bold;
+    text-align: center;
+    margin: 0;
+}
+
+.see-more {
+    position: absolute;
+    right: 0;
+    text-decoration: none;
+    font-size: 14px;
+    color: #2c2c6c;
+    font-weight: bold;
+}
+
+.see-more:hover {
+    text-decoration: underline;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+/* ========================== CARD ========================== */
+.card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    background: white;
+
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Gambar card */
+.card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.card-body {
+    padding: 15px;
+}
+
+/* ========================== LINK CARD ========================== */
+.card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+/* ========================== FIX LINK CARD FINAL ========================== */
+/* Memastikan semua teks di dalam <a> normal, tanpa biru/underline */
+a.card-link,
+a.card-link *,
+a.card,
+a.card * {
+    color: #333 !important;
+    text-decoration: none !important;
+}
+
+/* Hover effect tetap */
+a.card-link:hover h4,
+a.card:hover h4 {
+    color: #2c2c6c !important;
+}
+
+/* ========================== PROVINCE INFO ========================== */
+.province-info {
+    text-align: center;
+    max-width: 700px;
+    margin: auto;
+}
+
+.province-info h2 {
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+/* ========================== LOGO NAVBAR ========================== */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo-img {
+    width: 100px;
+    height: auto;
+}
+
+.logo-text span {
+    display: block;
+    line-height: 1.1;
+}
+
+.logo-text span:nth-child(2) {
+    font-weight: bold;
+    font-size: 26px;
+}
+
+/* ========================== FOOTER ========================== */
+.footer {
+    background: #2c2c6c;
+    color: white;
+    padding: 40px 20px 20px;
+    margin-top: 50px;
+}
+
+.footer-container {
+    max-width: 1100px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.footer h4 {
+    margin-bottom: 10px;
+}
+
+.footer p {
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.footer-links a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    margin-bottom: 6px;
+    font-size: 14px;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+}
+
+.footer-copy {
+    text-align: center;
+    grid-column: 1 / -1;
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    padding-top: 15px;
+    margin-top: 20px;
+    font-size: 13px;
+}
+
+/* ========================== LOGO DI FOOTER ========================== */
+.footer-logo {
+    align-items: flex-start;
+}
+
+.footer-logo .logo-img {
+    width: 70px;
+}
+
+.footer-logo .logo-text span {
+    color: white;
+}
+
+.footer-desc {
+    font-size: 14px;
+    margin-top: 10px;
+    line-height: 1.6;
+}
