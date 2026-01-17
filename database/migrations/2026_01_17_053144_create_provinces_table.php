@@ -10,15 +10,16 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up(): void
-{
-    Schema::create('provinces', function (Blueprint $table) {
-        $table->id();
-        $table->string('name');              // nama provinsi
-        $table->string('slug')->unique();    // slug unik untuk URL
-        $table->timestamps();
-    });
-}
-
+    {
+        Schema::create('provinces', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');                 // nama provinsi
+            $table->string('slug')->unique();       // slug unik untuk URL
+            $table->string('image')->nullable();    // gambar provinsi
+            $table->text('description')->nullable();// deskripsi provinsi
+            $table->timestamps();
+        });
+    }
 
     /**
      * Reverse the migrations.
