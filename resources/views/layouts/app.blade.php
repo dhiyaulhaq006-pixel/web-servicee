@@ -27,6 +27,7 @@
             <a href="/adat">Adat Istiadat</a>
             <a href="/kuliner">Kuliner</a>
             <a href="/wisata">Tempat Wisata</a>
+            <a href="/about-us">Tentang Kami</a> <!-- Ubah tulisan menjadi Tentang Kami -->
         </nav>
     </header>
 
@@ -40,20 +41,19 @@
         <div class="footer-container">
             <div class="footer-about">
                 <div class="logo footer-logo">
-    <img src="/images/logo.png" alt="Logo Indonesia Travel Guide" class="logo-img">
+                    <img src="/images/logo.png" alt="Logo Indonesia Travel Guide" class="logo-img">
 
-    <div class="logo-text">
-        <span>Indonesian</span>
-        <span>Travel</span>
-        <span>Guide</span>
-    </div>
-</div>
+                    <div class="logo-text">
+                        <span>Indonesian</span>
+                        <span>Travel</span>
+                        <span>Guide</span>
+                    </div>
+                </div>
 
-<p class="footer-desc">
-    Platform informasi provinsi, adat istiadat,
-    kuliner, dan tempat wisata di Indonesia.
-</p>
-
+                <p class="footer-desc">
+                    Platform informasi provinsi, adat istiadat,
+                    kuliner, dan tempat wisata di Indonesia.
+                </p>
             </div>
 
             <div class="footer-links">
@@ -63,6 +63,7 @@
                 <a href="/adat">Adat Istiadat</a>
                 <a href="/kuliner">Kuliner</a>
                 <a href="/wisata">Tempat Wisata</a>
+                <a href="/about-us">Tentang Kami</a> <!-- Ubah tulisan juga di footer -->
             </div>
 
             <div class="footer-copy">
@@ -73,4 +74,3 @@
 
 </body>
 </html>
-

@@ -1,25 +1,66 @@
-@extends('layouts.app')
+@extends('layouts.admin-auth')
+
+
+
+@section('title', 'Login Admin')
 
 @section('content')
-<h2>Login Admin</h2>
+<style>
+    .login-box {
+        max-width: 400px;
+        margin: 60px auto;
+        background: #fff;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 10px 25px rgba(0,0,0,.1);
+    }
 
-@if (session('error'))
-    <p style="color:red">{{ session('error') }}</p>
-@endif
+    .login-box h2 {
+        text-align: center;
+        margin-bottom: 25px;
+    }
 
-<form method="POST" action="/admin/login">
-    @csrf
+    .login-box input {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+    }
 
-    <div>
-        <label>Email</label><br>
-        <input type="email" name="email">
-    </div>
+    .login-box button {
+        width: 100%;
+        padding: 10px;
+        background: #2c2f6f;
+        color: #fff;
+        border: none;
+        font-weight: bold;
+        cursor: pointer;
+    }
 
-    <div>
-        <label>Password</label><br>
-        <input type="password" name="password">
-    </div>
+    .error {
+        background: #fdd;
+        padding: 10px;
+        margin-bottom: 15px;
+        border-left: 5px solid red;
+    }
+</style>
 
-    <button type="submit">Login</button>
-</form>
+<div class="login-box">
+    <h2>Login Admin</h2>
+
+    @if(session('error'))
+        <div class="error">{{ session('error') }}</div>
+    @endif
+
+    <form method="POST" action="/admin/login">
+        @csrf
+
+        <label>Email</label>
+        <input type="email" name="email" required>
+
+        <label>Password</label>
+        <input type="password" name="password" required>
+
+        <button type="submit">Login</button>
+    </form>
+</div>
 @endsection
