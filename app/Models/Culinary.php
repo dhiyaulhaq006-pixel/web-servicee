@@ -11,11 +11,12 @@ class Kuliner extends Model
     protected $fillable = [
         'kuliner_id',
         'name',
+        'slug',          // tambahan
+        'province_slug', // tambahan
         'image',
         'description',
     ];
 
-    // contoh function seperti aboutInfo() di Post
     public static function info()
     {
         return [

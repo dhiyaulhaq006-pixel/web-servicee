@@ -17,6 +17,11 @@ return new class extends Migration
             // kolom tambahan
             $table->string('wisata_id')->unique();   // kode unik wisata
             $table->string('name');                  // nama wisata
+
+            // WAJIB sesuai catatan
+            $table->string('slug')->unique();        // slug untuk URL
+            $table->string('province_slug');         // slug provinsi (contoh: bali)
+
             $table->string('image')->nullable();     // path gambar (boleh kosong)
             $table->text('description')->nullable(); // deskripsi (boleh kosong)
 

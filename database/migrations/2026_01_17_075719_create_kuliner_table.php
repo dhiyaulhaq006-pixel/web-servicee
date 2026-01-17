@@ -17,6 +17,11 @@ return new class extends Migration
             // kolom tambahan
             $table->string('kuliner_id')->unique();   // kode unik kuliner
             $table->string('name');                   // nama kuliner
+
+            // WAJIB sesuai catatan
+            $table->string('slug')->unique();         // slug untuk URL
+            $table->string('province_slug');          // slug provinsi (contoh: bali, ntb)
+
             $table->string('image')->nullable();      // path gambar (boleh kosong)
             $table->text('description')->nullable();  // deskripsi (boleh kosong)
 

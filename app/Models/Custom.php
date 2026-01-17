@@ -11,11 +11,12 @@ class AdatIstiadat extends Model
     protected $fillable = [
         'adat_id',
         'name',
+        'slug',          // tambahan
+        'province_slug', // tambahan
         'image',
         'description',
     ];
 
-    // contoh function seperti aboutInfo()
     public static function info()
     {
         return [

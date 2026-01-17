@@ -11,11 +11,12 @@ class Wisata extends Model
     protected $fillable = [
         'wisata_id',
         'name',
+        'slug',          // tambahan
+        'province_slug', // tambahan
         'image',
         'description',
     ];
 
-    // contoh function seperti aboutInfo()
     public static function info()
     {
         return [
