@@ -3,20 +3,24 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Tour;
 
-class Culinary extends Model
+class Kuliner extends Model
 {
+    protected $table = 'kuliner';
+
     protected $fillable = [
-        'tour_id',
+        'kuliner_id',
         'name',
         'image',
-        'description'
+        'description',
     ];
 
-    // Relasi: Culinary milik satu Tour
-    public function tour()
+    // contoh function seperti aboutInfo() di Post
+    public static function info()
     {
-        return $this->belongsTo(Tour::class);
+        return [
+            'title' => 'Kuliner Nusantara',
+            'desc'  => 'Data kuliner berisi nama, gambar, dan deskripsi.'
+        ];
     }
 }

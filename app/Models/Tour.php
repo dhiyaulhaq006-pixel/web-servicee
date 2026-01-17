@@ -3,27 +3,24 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Province;
-use App\Models\Culinary;
 
-class Tour extends Model
+class Wisata extends Model
 {
+    protected $table = 'wisata';
+
     protected $fillable = [
-        'province_id',
+        'wisata_id',
         'name',
         'image',
-        'description'
+        'description',
     ];
 
-    // Tour milik satu Province
-    public function province()
+    // contoh function seperti aboutInfo()
+    public static function info()
     {
-        return $this->belongsTo(Province::class);
-    }
-
-    // Tour punya banyak Culinary
-    public function culinary()
-    {
-        return $this->hasMany(Culinary::class);
+        return [
+            'title' => 'Wisata Nusantara',
+            'desc'  => 'Data wisata berisi nama tempat, gambar, dan deskripsi.'
+        ];
     }
 }

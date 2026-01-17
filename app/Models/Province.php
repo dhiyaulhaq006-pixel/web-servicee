@@ -3,23 +3,24 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Tour;
-use App\Models\Custom;
 
 class Province extends Model
 {
+    protected $table = 'provinces';
+
     protected $fillable = [
-    'name',
-    'description',
-    'image'];
+        'name',
+        'slug',
+        'image',
+        'description',
+    ];
 
-    public function tours()
+    // contoh function seperti aboutInfo()
+    public static function info()
     {
-        return $this->hasMany(Tour::class);
-    }
-
-    public function customs()
-    {
-        return $this->hasMany(Custom::class);
+        return [
+            'title' => 'Provinsi di Indonesia',
+            'desc'  => 'Data provinsi berisi nama, slug, gambar, dan deskripsi.'
+        ];
     }
 }

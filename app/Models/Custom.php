@@ -3,20 +3,24 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Province;
 
-class Custom extends Model
+class AdatIstiadat extends Model
 {
+    protected $table = 'adatistiadat';
+
     protected $fillable = [
-        'province_id',
+        'adat_id',
         'name',
         'image',
-        'description'
+        'description',
     ];
 
-    // Relasi: Custom milik satu Province
-    public function province()
+    // contoh function seperti aboutInfo()
+    public static function info()
     {
-        return $this->belongsTo(Province::class);
+        return [
+            'title' => 'Adat Istiadat Nusantara',
+            'desc'  => 'Data adat istiadat berisi nama, gambar, dan deskripsi.'
+        ];
     }
 }
