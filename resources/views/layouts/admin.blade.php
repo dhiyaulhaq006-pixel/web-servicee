@@ -4,19 +4,21 @@
     <meta charset="UTF-8">
     <title>Admin - Provinsi Guide</title>
 
-    {{-- CSS utama --}}
+    <!-- CSS USER -->
     <link rel="stylesheet" href="/css/style.css">
+
+    <!-- CSS ADMIN -->
+    <link rel="stylesheet" href="/css/admin.css">
 </head>
 <body>
 
-    <!-- HEADER / NAVBAR (SAMA DENGAN USER) -->
+    <!-- HEADER / NAVBAR -->
     <header class="navbar">
         <h1 class="logo">
             <img src="/images/logo.png" alt="Logo Indonesia Travel Guide" class="logo-img">
-
             <div class="logo-text">
-                <span>Admin</span>
-                <span>Provinsi</span>
+                <span>Indonesian</span>
+                <span>Travel</span>
                 <span>Guide</span>
             </div>
         </h1>

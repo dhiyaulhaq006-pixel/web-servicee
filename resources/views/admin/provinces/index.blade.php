@@ -3,56 +3,49 @@
 @section('content')
 <h2>Kelola Provinsi</h2>
 
-<a href="/admin/provinces/create" style="
-    display:inline-block;
-    margin-bottom:15px;
-    padding:8px 12px;
-    background:#2d2a6e;
-    color:white;
-    text-decoration:none;
-    border-radius:4px;
-">+ Tambah Provinsi</a>
+<a href="{{ route('admin.provinces.create') }}" class="btn-primary">+ Tambah Provinsi</a>
 
-<table style="
-    width:100%;
-    border-collapse:collapse;
-    background:white;
-">
+<table class="admin-table">
     <thead>
-        <tr style="background:#f3f3f3">
-            <th style="padding:10px;border:1px solid #ccc;">Gambar</th>
-            <th style="padding:10px;border:1px solid #ccc;">Nama</th>
-            <th style="padding:10px;border:1px solid #ccc;">Deskripsi</th>
-            <th style="padding:10px;border:1px solid #ccc;">Aksi</th>
+        <tr>
+            <th>Gambar</th>
+            <th>Nama</th>
+            <th>Deskripsi</th>
+            <th>Aksi</th>
         </tr>
     </thead>
 
     <tbody>
         @forelse($provinces as $p)
         <tr>
-            <td style="padding:10px;border:1px solid #ccc;text-align:center">
-                @if(!empty($p['image']))
-                    <img src="{{ asset('images/' . $p['image']) }}" width="80" style="border-radius:4px">
+            <td class="center">
+                @if($p->image)
+                    <img src="{{ asset('images/' . $p->image) }}" class="thumb">
                 @else
-                    -
+                    <span class="muted">Tidak ada</span>
                 @endif
             </td>
-            <td style="padding:10px;border:1px solid #ccc;">
-                {{ $p['name'] }}
+
+            <td>
+                <strong>{{ $p->name }}</strong><br>
+                <small class="muted">{{ $p->slug }}</small>
             </td>
-            <td style="padding:10px;border:1px solid #ccc;">
-                {{ $p['description'] }}
-            </td>
-            <td style="padding:10px;border:1px solid #ccc; text-align:center;">
-                <a href="/admin/provinces/edit/{{ $p['id'] }}" style="color:#2d2a6e; margin-right:8px; text-decoration:none;">Edit</a>
-                <a href="/admin/provinces/delete/{{ $p['id'] }}" onclick="return confirm('Hapus data?')" style="color:red;text-decoration:none">Hapus</a>
+
+            <td class="desc">{{ Str::limit($p->description, 80) }}</td>
+
+            <td class="center">
+                <a href="{{ route('admin.provinces.edit', $p->id) }}" class="btn-edit">Edit</a>
+
+                <form action="{{ route('admin.provinces.destroy', $p->id) }}" method="POST" style="display:inline;">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn-delete" onclick="return confirm('Hapus provinsi ini?')">Hapus</button>
+                </form>
             </td>
         </tr>
         @empty
         <tr>
-            <td colspan="4" style="padding:15px;text-align:center">
-                Belum ada data
-            </td>
+            <td colspan="4" class="empty">Belum ada data</td>
         </tr>
         @endforelse
     </tbody>

@@ -2,7 +2,11 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Provinsi Guide</title>
+
+    {{-- Bootstrap CSS --}}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
     {{-- CSS utama --}}
     <link rel="stylesheet" href="/css/style.css">
@@ -27,7 +31,7 @@
             <a href="/adat">Adat Istiadat</a>
             <a href="/kuliner">Kuliner</a>
             <a href="/wisata">Tempat Wisata</a>
-            <a href="/about-us">Tentang Kami</a> <!-- Ubah tulisan menjadi Tentang Kami -->
+            <a href="/about-us">Tentang Kami</a>
         </nav>
     </header>
 
@@ -63,7 +67,7 @@
                 <a href="/adat">Adat Istiadat</a>
                 <a href="/kuliner">Kuliner</a>
                 <a href="/wisata">Tempat Wisata</a>
-                <a href="/about-us">Tentang Kami</a> <!-- Ubah tulisan juga di footer -->
+                <a href="/about-us">Tentang Kami</a>
             </div>
 
             <div class="footer-copy">
@@ -71,6 +75,9 @@
             </div>
         </div>
     </footer>
+
+    {{-- Bootstrap JS --}}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>

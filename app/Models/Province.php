@@ -6,21 +6,20 @@ use Illuminate\Database\Eloquent\Model;
 
 class Province extends Model
 {
-    protected $table = 'provinces';
+    protected $fillable = ['name','slug','description','image'];
 
-    protected $fillable = [
-        'name',
-        'slug',
-        'image',
-        'description',
-    ];
-
-    // contoh function seperti aboutInfo()
-    public static function info()
+    public function kuliner()
     {
-        return [
-            'title' => 'Provinsi di Indonesia',
-            'desc'  => 'Data provinsi berisi nama, slug, gambar, dan deskripsi.'
-        ];
+        return $this->hasMany(\App\Models\Kuliner::class, 'province_slug', 'slug');
+    }
+
+    public function wisata()
+    {
+        return $this->hasMany(\App\Models\Wisata::class, 'province_slug', 'slug');
+    }
+
+    public function adatIstiadat()
+    {
+        return $this->hasMany(\App\Models\AdatIstiadat::class, 'province_slug', 'slug');
     }
 }

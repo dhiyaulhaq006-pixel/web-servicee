@@ -6,32 +6,20 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('wisata', function (Blueprint $table) {
-            $table->id();
-
-            // kolom tambahan
-            $table->string('wisata_id')->unique();   // kode unik wisata
-            $table->string('name');                  // nama wisata
-
-            // WAJIB sesuai catatan
-            $table->string('slug')->unique();        // slug untuk URL
-            $table->string('province_slug');         // slug provinsi (contoh: bali)
-
-            $table->string('image')->nullable();     // path gambar (boleh kosong)
-            $table->text('description')->nullable(); // deskripsi (boleh kosong)
-
+            $table->id(); // primary key auto-increment
+            $table->string('wisata_id')->unique(); // kode unik wisata
+            $table->string('name'); // nama wisata
+            $table->string('slug')->unique(); // slug untuk URL
+            $table->string('province_slug'); // slug provinsi
+            $table->string('image')->nullable(); // path gambar
+            $table->text('description')->nullable(); // deskripsi
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('wisata');

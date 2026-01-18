@@ -3,20 +3,23 @@
 @section('content')
 
 <!-- HERO -->
-<div class="hero" style="background-image: url('/images/hero.jpg')">
+<div class="hero" style="background-image: url('{{ asset("images/hero1.jpg") }}');">
     <div class="hero-content">
         <h2>Mari Jelajahi Indonesia</h2>
 
-        <form class="hero-search">
-            <input type="text" placeholder="Cari provinsi, wisata, kuliner, atau adat...">
-            <button type="submit">Cari</button>
+        {{-- Modern Search bar --}}
+        <form class="hero-search" method="GET" action="/search">
+            <div class="search-wrapper">
+                <input type="text" name="q" placeholder="Cari provinsi, wisata, kuliner, atau adat...">
+                <button type="submit">
+                    🔍
+                </button>
+            </div>
         </form>
     </div>
 </div>
 
-<!-- =======================
-     PREVIEW PROVINSI
-======================= -->
+{{-- ======================= PROVINSI ======================= --}}
 <section class="section">
     <div class="section-header">
         <h3>Provinsi</h3>
@@ -24,41 +27,23 @@
     </div>
 
     <div class="grid">
-        <a href="/provinces/jawa-barat" class="card-link">
-            <div class="card">
-                <img src="/images/provinsi/jawa-barat.jpg">
-                <div class="card-body">
-                    <h4>Jawa Barat</h4>
-                    <p>Budaya Sunda dan alam pegunungan</p>
+        @forelse($provinces as $p)
+            <a href="/provinces/{{ $p->slug }}" class="card-link">
+                <div class="card">
+                    <img src="{{ asset('images/' . $p->image) }}" alt="{{ $p->name }}">
+                    <div class="card-body">
+                        <h4>{{ $p->name }}</h4>
+                        <p>{{ Str::limit($p->description, 60) }}</p>
+                    </div>
                 </div>
-            </div>
-        </a>
-
-        <a href="/provinces/bali" class="card-link">
-            <div class="card">
-                <img src="/images/provinsi/bali.jpg">
-                <div class="card-body">
-                    <h4>Bali</h4>
-                    <p>Pulau dewata dan budaya Hindu</p>
-                </div>
-            </div>
-        </a>
-
-        <a href="/provinces/sumatera-barat" class="card-link">
-            <div class="card">
-                <img src="/images/provinsi/sumbar.jpg">
-                <div class="card-body">
-                    <h4>Sumatera Barat</h4>
-                    <p>Rumah Gadang & budaya Minang</p>
-                </div>
-            </div>
-        </a>
+            </a>
+        @empty
+            <p>Tidak ada data provinsi</p>
+        @endforelse
     </div>
 </section>
 
-<!-- =======================
-     PREVIEW ADAT ISTIADAT
-======================= -->
+{{-- ======================= ADAT ISTIADAT ======================= --}}
 <section class="section">
     <div class="section-header">
         <h3>Adat Istiadat</h3>
@@ -66,41 +51,23 @@
     </div>
 
     <div class="grid">
-        <a href="/adat/toraja" class="card-link">
-            <div class="card">
-                <img src="/images/adat/toraja.jpg">
-                <div class="card-body">
-                    <h4>Adat Toraja</h4>
-                    <p>Upacara Rambu Solo'</p>
+        @forelse($adat as $a)
+            <a href="/adat/{{ $a->slug }}" class="card-link">
+                <div class="card">
+                    <img src="{{ asset('images/' . $a->image) }}" alt="{{ $a->name }}">
+                    <div class="card-body">
+                        <h4>{{ $a->name }}</h4>
+                        <p>{{ Str::limit($a->description, 60) }}</p>
+                    </div>
                 </div>
-            </div>
-        </a>
-
-        <a href="/adat/bali" class="card-link">
-            <div class="card">
-                <img src="/images/adat/bali.jpg">
-                <div class="card-body">
-                    <h4>Adat Bali</h4>
-                    <p>Upacara keagamaan Hindu</p>
-                </div>
-            </div>
-        </a>
-
-        <a href="/adat/minangkabau" class="card-link">
-            <div class="card">
-                <img src="/images/adat/minang.jpg">
-                <div class="card-body">
-                    <h4>Adat Minangkabau</h4>
-                    <p>Sistem matrilineal</p>
-                </div>
-            </div>
-        </a>
+            </a>
+        @empty
+            <p>Tidak ada data adat</p>
+        @endforelse
     </div>
 </section>
 
-<!-- =======================
-     PREVIEW KULINER
-======================= -->
+{{-- ======================= KULINER ======================= --}}
 <section class="section">
     <div class="section-header">
         <h3>Kuliner</h3>
@@ -108,41 +75,23 @@
     </div>
 
     <div class="grid">
-        <a href="/kuliner/rendang" class="card-link">
-            <div class="card">
-                <img src="/images/kuliner/rendang.jpg">
-                <div class="card-body">
-                    <h4>Rendang</h4>
-                    <p>Kuliner khas Sumatera Barat</p>
+        @forelse($kuliner as $k)
+            <a href="/kuliner/{{ $k->slug }}" class="card-link">
+                <div class="card">
+                    <img src="{{ asset('images/' . $k->image) }}" alt="{{ $k->name }}">
+                    <div class="card-body">
+                        <h4>{{ $k->name }}</h4>
+                        <p>{{ Str::limit($k->description, 60) }}</p>
+                    </div>
                 </div>
-            </div>
-        </a>
-
-        <a href="/kuliner/gudeg" class="card-link">
-            <div class="card">
-                <img src="/images/kuliner/gudeg.jpg">
-                <div class="card-body">
-                    <h4>Gudeg</h4>
-                    <p>Makanan khas Yogyakarta</p>
-                </div>
-            </div>
-        </a>
-
-        <a href="/kuliner/papeda" class="card-link">
-            <div class="card">
-                <img src="/images/kuliner/papeda.jpg">
-                <div class="card-body">
-                    <h4>Papeda</h4>
-                    <p>Kuliner khas Papua</p>
-                </div>
-            </div>
-        </a>
+            </a>
+        @empty
+            <p>Tidak ada data kuliner</p>
+        @endforelse
     </div>
 </section>
 
-<!-- =======================
-     PREVIEW WISATA
-======================= -->
+{{-- ======================= WISATA ======================= --}}
 <section class="section">
     <div class="section-header">
         <h3>Tempat Wisata</h3>
@@ -150,35 +99,19 @@
     </div>
 
     <div class="grid">
-        <a href="/wisata/bromo" class="card-link">
-            <div class="card">
-                <img src="/images/wisata/bromo.jpg">
-                <div class="card-body">
-                    <h4>Gunung Bromo</h4>
-                    <p>Panorama alam ikonik</p>
+        @forelse($wisata as $w)
+            <a href="/wisata/{{ $w->slug }}" class="card-link">
+                <div class="card">
+                    <img src="{{ asset('images/' . $w->image) }}" alt="{{ $w->name }}">
+                    <div class="card-body">
+                        <h4>{{ $w->name }}</h4>
+                        <p>{{ Str::limit($w->description, 60) }}</p>
+                    </div>
                 </div>
-            </div>
-        </a>
-
-        <a href="/wisata/raja-ampat" class="card-link">
-            <div class="card">
-                <img src="/images/wisata/raja-ampat.jpg">
-                <div class="card-body">
-                    <h4>Raja Ampat</h4>
-                    <p>Surga laut Indonesia</p>
-                </div>
-            </div>
-        </a>
-
-        <a href="/wisata/borobudur" class="card-link">
-            <div class="card">
-                <img src="/images/wisata/borobudur.jpg">
-                <div class="card-body">
-                    <h4>Candi Borobudur</h4>
-                    <p>Warisan budaya dunia</p>
-                </div>
-            </div>
-        </a>
+            </a>
+        @empty
+            <p>Tidak ada data wisata</p>
+        @endforelse
     </div>
 </section>
 

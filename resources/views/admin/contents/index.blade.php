@@ -1,62 +1,69 @@
 @extends('layouts.admin')
 
 @section('content')
+@php
+use Illuminate\Support\Str;
+@endphp
+
 <h2>Kelola Konten</h2>
 
-<a href="/admin/contents/create" style="
-    display:inline-block;
-    margin-bottom:15px;
-    padding:8px 12px;
-    background:#2d2a6e;
-    color:white;
-    text-decoration:none;
-    border-radius:4px;
-">+ Tambah Konten</a>
+<a href="{{ route('admin.contents.create') }}" class="btn-primary">+ Tambah Konten</a>
 
-<table style="
-    width:100%;
-    border-collapse:collapse;
-    background:white;
-">
+<table class="admin-table">
     <thead>
-        <tr style="background:#f3f3f3">
-            <th style="padding:10px;border:1px solid #ccc;">Gambar</th>
-            <th style="padding:10px;border:1px solid #ccc;">Judul</th>
-            <th style="padding:10px;border:1px solid #ccc;">Kategori</th>
-            <th style="padding:10px;border:1px solid #ccc;">Aksi</th>
+        <tr>
+            <th>Gambar</th>
+            <th>Nama</th>
+            <th>Kategori</th>
+            <th>Provinsi</th>
+            <th>Deskripsi</th>
+            <th>Aksi</th>
         </tr>
     </thead>
 
     <tbody>
-        @forelse($contents as $c)
-        <tr>
-            <td style="padding:10px;border:1px solid #ccc;text-align:center; vertical-align:middle;">
-                @if(!empty($c['image']))
-                    <img src="{{ asset('images/' . $c['image']) }}" width="80" style="border-radius:4px; object-fit:cover;">
-                @else
-                    <small>Tidak ada gambar</small>
-                @endif
-            </td>
+        @forelse($contents as $type => $items)
+            @foreach($items as $content)
+                <tr>
+                    <!-- Gambar -->
+                    <td class="center">
+                        @if($content->image)
+                            <img src="{{ asset('images/' . $content->image) }}" class="thumb">
+                        @else
+                            <span class="muted">Tidak ada</span>
+                        @endif
+                    </td>
 
-            <td style="padding:10px;border:1px solid #ccc; max-width:250px; word-wrap:break-word; white-space:normal;">
-                {{ Str::limit($c['title'], 50, '...') }}
-            </td>
+                    <!-- Nama -->
+                    <td>
+                        <strong>{{ $content->name }}</strong><br>
+                        <small class="muted">{{ $content->slug }}</small>
+                    </td>
 
-            <td style="padding:10px;border:1px solid #ccc; text-transform:capitalize;">
-                {{ $c['category'] }}
-            </td>
+                    <!-- Kategori -->
+                    <td>{{ ucfirst($type) }}</td>
 
-            <td style="padding:10px;border:1px solid #ccc; text-align:center;">
-                <a href="/admin/contents/edit/{{ $c['id'] }}" style="color:#2d2a6e; margin-right:8px; text-decoration:none;">Edit</a>
-                <a href="/admin/contents/delete/{{ $c['id'] }}" onclick="return confirm('Hapus data?')" style="color:red;text-decoration:none">Hapus</a>
-            </td>
-        </tr>
+                    <!-- Provinsi -->
+                    <td>{{ $content->province_slug }}</td>
+
+                    <!-- Deskripsi -->
+                    <td class="desc">{{ $content->description ? Str::limit($content->description, 80) : '-' }}</td>
+
+                    <!-- Aksi -->
+                    <td class="center">
+                        <a href="{{ route('admin.contents.edit', $content->id) }}" class="btn-edit">Edit</a>
+                        <form action="{{ route('admin.contents.destroy', $content->id) }}" method="POST" style="display:inline-block;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn-delete" onclick="return confirm('Yakin ingin hapus konten ini?')">Hapus</button>
+                        </form>
+                    </td>
+                </tr>
+            @endforeach
         @empty
-        <tr>
-            <td colspan="4" style="padding:15px;text-align:center">
-                Belum ada data
-            </td>
-        </tr>
+            <tr>
+                <td colspan="6" class="empty">Belum ada konten</td>
+            </tr>
         @endforelse
     </tbody>
 </table>

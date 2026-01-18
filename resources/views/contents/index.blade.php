@@ -2,46 +2,30 @@
 
 @section('content')
 <div class="section">
-    {{-- Judul halaman --}}
-    <h2>
+    <!-- Judul kategori di tengah -->
+    <h2 style="text-align:center; color:#2c2c6c; margin-bottom:25px;">
         {{ ucfirst($category) }} -
-        {{ $provinsi ? ucfirst(str_replace('-', ' ', $provinsi)) : 'Semua Provinsi' }}
+        {{ isset($provinsi) && $provinsi ? ucfirst(str_replace('-', ' ', $provinsi)) : 'Semua Provinsi' }}
     </h2>
 
     <div class="grid">
-        @php
-            // Dummy data konten, nanti bisa diganti ambil dari database
-            $items = [];
-
-            if($provinsi) {
-                // Konten spesifik provinsi
-                $items = [
-                    ['slug' => 'contoh-item-1', 'judul' => 'Judul 1'],
-                    ['slug' => 'contoh-item-2', 'judul' => 'Judul 2'],
-                ];
-            } else {
-                // Konten dari semua provinsi
-                $items = [
-                    ['provinsi' => 'bali', 'slug' => 'contoh-item-1', 'judul' => 'Bali - Judul 1'],
-                    ['provinsi' => 'ntb', 'slug' => 'contoh-item-2', 'judul' => 'NTB - Judul 2'],
-                    ['provinsi' => 'jawa-barat', 'slug' => 'contoh-item-3', 'judul' => 'Jawa Barat - Judul 3'],
-                    ['provinsi' => 'jawa-timur', 'slug' => 'contoh-item-4', 'judul' => 'Jawa Timur - Judul 4'],
-                ];
-            }
-        @endphp
-
-        @foreach($items as $item)
+        @forelse($items as $item)
             @php
-                $prov_link = $provinsi ?? $item['provinsi'];
+                $prov_link = $provinsi ?? ($item->province_slug ?? '');
             @endphp
-            <a href="/provinces/{{ $prov_link }}/{{ $category }}/{{ $item['slug'] }}" class="card">
-                <img src="/images/sample.jpg" alt="{{ $item['judul'] }}">
+            <a href="/{{ $category }}/{{ $item->slug }}" class="card">
+                <img src="{{ asset('images/' . $item->image) }}" alt="{{ $item->name ?? $item->title }}">
                 <div class="card-body">
-                    <h4>{{ $item['judul'] }}</h4>
-                    <p>Deskripsi singkat {{ $category }}</p>
+                    <!-- Card tetap kiri -->
+                    <h4>{{ $item->name ?? $item->title }}</h4>
+                    <p>
+                        {{ isset($item->description) ? \Illuminate\Support\Str::limit($item->description, 100) : \Illuminate\Support\Str::limit($item->content, 100) }}
+                    </p>
                 </div>
             </a>
-        @endforeach
+        @empty
+            <p style="text-align:center;">Tidak ada konten untuk kategori ini.</p>
+        @endforelse
     </div>
 </div>
 @endsection
